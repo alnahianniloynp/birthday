@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Special Person ❤️</title>
+  <title>Happy Birthday My Special Person ❤️</title>
   
-  <!-- Browser Title Bar Image / Favicon -->
+  <!-- Favicon / Title Bar Image -->
   <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/837/837882.png">
 
-  <!-- Tailwind CSS & Google Fonts -->
+  <!-- Tailwind CSS & Confetti -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -21,7 +21,7 @@
     }
     .font-cursive { font-family: 'Dancing Script', cursive; }
 
-    /* iOS Glassmorphism */
+    /* iOS Glassmorphism UI */
     .ios-glass {
       background: rgba(255, 255, 255, 0.45);
       backdrop-filter: blur(25px);
@@ -30,7 +30,7 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
     }
 
-    /* 3D Flip Card Styles */
+    /* 3D Flip Cards */
     .perspective-1000 { perspective: 1000px; }
     .transform-style-3d { transform-style: preserve-3d; }
     .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
@@ -59,7 +59,7 @@
     .candle-flame {
       transform-origin: center bottom;
       animation: flicker 0.6s infinite alternate;
-      transition: opacity 0.5s ease;
+      transition: opacity 0.3s ease;
     }
     @keyframes flicker {
       0% { transform: scale(1) rotate(-2deg); opacity: 0.9; }
@@ -67,7 +67,7 @@
     }
     .flame-off { opacity: 0 !important; animation: none !important; }
 
-    /* Floating Hearts Animation */
+    /* Background Floating Hearts */
     @keyframes float {
       0% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
       100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
@@ -82,23 +82,24 @@
 </head>
 <body class="min-h-screen text-gray-800 relative overflow-x-hidden">
 
-  <!-- Background Floating Hearts -->
+  <!-- Floating Hearts Container -->
   <div id="hearts-container" class="fixed inset-0 pointer-events-none z-0"></div>
 
-  <!-- 🎵 Entrance Audio -->
+  <!-- Background Music -->
   <audio id="login-music" loop preload="auto">
     <source src="level.mp3" type="audio/mp3">
   </audio>
 
-  <!-- ================= 1. LOGIN ENTRANCE ================= -->
+  <!-- ================= 1. LOGIN SCREEN ================= -->
   <div id="login-screen" onclick="startAudio()" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-pink-100/60 backdrop-blur-2xl">
     <div class="ios-glass p-8 sm:p-10 rounded-3xl max-w-md w-full text-center relative border border-white/80">
+      
       <div class="w-20 h-20 bg-pink-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl animate-bounce">
         🔐
       </div>
 
       <h2 class="text-3xl font-bold text-pink-600 mb-2 font-cursive">Private Entrance 💖</h2>
-      <p class="text-sm text-gray-600 mb-6">Type the secret password to enter!<br>When are we meeting for the first time?</p>
+      <p class="text-sm text-gray-600 mb-6">Type the secret password to enter!</p>
 
       <form id="login-form" onsubmit="handleLogin(event)">
         <div class="mb-4 text-left">
@@ -107,7 +108,7 @@
             class="w-full px-5 py-3.5 rounded-2xl border border-pink-200/80 focus:outline-none focus:ring-2 focus:ring-pink-400 bg-white/60 text-gray-700 shadow-inner transition">
         </div>
         
-        <p id="login-error" class="text-red-500 text-xs mb-3 hidden font-medium">Thinking carefully! Hint: 180526</p>
+        <p id="login-error" class="text-red-500 text-xs mb-3 hidden font-medium">Incorrect password! Hint: Try "1234"</p>
         
         <button type="submit" class="w-full py-4 bg-gradient-to-r from-pink-500 to-rose-400 text-white rounded-2xl font-semibold shadow-lg hover:shadow-pink-500/25 hover:scale-[1.02] active:scale-[0.98] transition">
           Unlock Surprise ✨
@@ -120,16 +121,19 @@
   <!-- ================= 2. MAIN WEBSITE CONTENT ================= -->
   <div id="main-content" class="hidden max-w-5xl mx-auto px-4 pt-12 pb-24 relative z-10">
 
+    <!-- Header -->
     <header class="text-center mb-16">
+      <span class="px-4 py-1.5 bg-white/50 text-pink-600 rounded-full text-xs font-semibold tracking-wide uppercase border border-pink-200">Happy Birthday</span>
       <h1 class="text-5xl sm:text-7xl font-bold text-pink-600 font-cursive mt-3 mb-3 drop-shadow-sm">Happy Birthday My Love! ❤️</h1>
       <p class="text-gray-600 italic text-base sm:text-lg">This special little world is created only for you.</p>
     </header>
 
-    <!-- SECTION 1: Video -->
+
+    <!-- SECTION 1: 17-Second Video Wish -->
     <section class="ios-glass rounded-3xl p-6 sm:p-8 shadow-xl mb-12 border border-white/80">
       <div class="flex items-center justify-center gap-2 mb-4">
         <span class="text-2xl">🎥</span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-pink-600 font-cursive">A Special 17-Second Wish</h2>
+        <h2 class="text-2xl sm:text-3xl font-bold text-pink-600 font-cursive">A Special Wish For You</h2>
       </div>
 
       <div class="aspect-video w-full max-w-2xl mx-auto rounded-2xl overflow-hidden shadow-2xl bg-black/80 border-4 border-white/60">
@@ -139,12 +143,18 @@
       </div>
     </section>
 
-    <!-- SECTION 2: Cake Blow -->
+
+    <!-- SECTION 2: Fixed Microphone & Blow Candle Cake -->
     <section class="ios-glass rounded-3xl p-8 sm:p-10 shadow-xl mb-12 text-center border border-white/80">
       <h2 class="text-3xl sm:text-4xl font-bold text-pink-600 font-cursive mb-2">🎂 Make a Wish & Blow the Candle</h2>
       
+      <!-- Dynamic Status -->
+      <p id="cake-status" class="text-sm text-pink-700 bg-pink-100/60 py-2 px-5 rounded-full inline-block font-medium mb-4">
+        🎙️ Click the button below to enable microphone
+      </p>
 
-      <div class="w-52 h-52 mx-auto cursor-pointer mb-6 hover:scale-105 transition-transform" onclick="blowOutCandle()">
+      <!-- Cake SVG -->
+      <div class="w-52 h-52 mx-auto cursor-pointer mb-4 hover:scale-105 transition-transform" onclick="blowOutCandle()">
         <svg viewBox="0 0 200 200" class="w-full h-full filter drop-shadow-md">
           <rect x="30" y="120" width="140" height="60" rx="12" fill="#f4a261" />
           <rect x="20" y="150" width="160" height="30" rx="12" fill="#e76f51" />
@@ -155,16 +165,24 @@
         </svg>
       </div>
 
-      <button id="mic-btn" onclick="initMicrophone()" class="px-6 py-3 bg-pink-500 text-white font-medium rounded-full shadow-lg hover:bg-pink-600 transition text-sm">
-        🎙️ Enable Microphone to Blow Candle
+      <!-- Realtime Audio Sound Meter -->
+      <div id="meter-container" class="w-full max-w-md mx-auto bg-gray-200/80 h-3 rounded-full overflow-hidden my-4 hidden border border-pink-200">
+        <div id="volume-meter" class="bg-gradient-to-r from-pink-400 to-rose-600 h-full w-0 transition-all duration-75"></div>
+      </div>
+
+      <!-- Action Button -->
+      <button id="mic-btn" onclick="startMicLogic()" class="px-8 py-3.5 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold rounded-full shadow-lg hover:shadow-pink-500/30 hover:scale-105 active:scale-95 transition text-sm">
+        🎙️ Enable Microphone
       </button>
 
+      <!-- Wish Message -->
       <div id="wish-message" class="hidden mt-6 text-2xl sm:text-3xl font-bold text-pink-600 font-cursive animate-bounce">
         🎉 Happy Birthday My Special Person! May all your dreams come true! ❤️
       </div>
     </section>
 
-    <!-- SECTION 3: Moments Gallery -->
+
+    <!-- SECTION 3: Moments Video Gallery -->
     <section class="ios-glass rounded-3xl p-6 sm:p-8 shadow-xl mb-12 border border-white/80">
       <div class="flex items-center justify-center gap-2 mb-6">
         <span class="text-2xl">🎬</span>
@@ -188,6 +206,7 @@
       </div>
     </section>
 
+
     <!-- SECTION 4: 8 Interactive Flip Cards -->
     <section class="ios-glass rounded-3xl p-6 sm:p-8 shadow-xl border border-white/80">
       <div class="text-center mb-8">
@@ -207,6 +226,7 @@
     const music = document.getElementById('login-music');
     let musicStarted = false;
     let isBlown = false;
+    let micStream, audioCtx, analyser;
 
     function startAudio() {
       if (!musicStarted) {
@@ -231,6 +251,7 @@
       }
     }
 
+    // 8 Secret Cards Data
     const cardData = [
       { img: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=500&q=80", note: "Ami shob shomoy tomak erokom-i hashi khushi dekhte chai! ❤️" },
       { img: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=500&q=80", note: "Amader prothom dekhar sei din-ta amar jiboner shobse special day!" },
@@ -259,14 +280,10 @@
       gridContainer.innerHTML += cardHTML;
     });
 
-    function toggleCard(cardElement) {
-      cardElement.classList.toggle('flipped');
-    }
+    function toggleCard(cardElement) { cardElement.classList.toggle('flipped'); }
+    function resetCard(cardElement) { cardElement.classList.remove('flipped'); }
 
-    function resetCard(cardElement) {
-      cardElement.classList.remove('flipped');
-    }
-
+    // Candle Blow Function
     function blowOutCandle() {
       if (isBlown) return;
       isBlown = true;
@@ -274,92 +291,93 @@
       document.getElementById('flame').classList.add('flame-off');
       document.getElementById('flame-inner').classList.add('flame-off');
 
-      document.getElementById('cake-status').innerText = "Yay! The candle is blown out! 🎉";
+      const statusTxt = document.getElementById('cake-status');
+      statusTxt.innerText = "Yay! Candle is Blown Out! 🎉";
+      statusTxt.className = "text-sm font-bold text-green-700 bg-green-100 py-2 px-5 rounded-full inline-block";
+
       document.getElementById('wish-message').classList.remove('hidden');
       document.getElementById('mic-btn').style.display = 'none';
+      document.getElementById('meter-container').classList.add('hidden');
+
+      if (micStream) {
+        micStream.getTracks().forEach(track => track.stop());
+      }
 
       confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
     }
 
-    /* Fixed Microphone & Blowing Detection Engine */
-    async function initMicrophone() {
-  const statusTxt = document.getElementById('cake-status');
-  const micBtn = document.getElementById('mic-btn');
+    // High Sensitive Microphone Blow Detection Logic
+    async function startMicLogic() {
+      const statusText = document.getElementById('cake-status');
+      const micBtn = document.getElementById('mic-btn');
+      const meterContainer = document.getElementById('meter-container');
+      const volumeMeter = document.getElementById('volume-meter');
 
-  // Check if browser supports Media Devices
-  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-    alert("Apnar browser-e microphone support korche na! Cake-e click kore candle blow koro.");
-    return;
-  }
+      try {
+        // Request Microphone with NoiseSuppression Disabled (Crucial for Blow sound)
+        micStream = await navigator.mediaDevices.getUserMedia({
+          audio: {
+            echoCancellation: false,
+            noiseSuppression: false, 
+            autoGainControl: false
+          }
+        });
 
-  try {
-    // Request permission explicitly on user click
-    const stream = await navigator.mediaDevices.getUserMedia({ 
-      audio: {
-        echoCancellation: true,
-        noiseSuppression: false, // Noise suppression off rakhle phūr haowa shohoje detect hoy
-        autoGainControl: true
-      }, 
-      video: false 
-    });
+        // iOS & Chrome AudioContext Force Initialize
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
 
-    statusTxt.innerText = "Microphone Active! Ekhon mic-er shamne phū dao 🌬️";
-    micBtn.style.display = 'none';
+        if (audioCtx.state === 'suspended') {
+          await audioCtx.resume();
+        }
 
-    // Handle Audio Context for iOS & Chrome Security
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    const audioContext = new AudioContext();
+        const source = audioCtx.createMediaStreamSource(micStream);
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 512;
+        source.connect(analyser);
 
-    if (audioContext.state === 'suspended') {
-      await audioContext.resume();
-    }
+        statusText.innerText = "🌬️ Mic Active! Mic-er shamne ghenistho hoye jore phū din!";
+        statusText.className = "text-sm font-medium text-pink-700 bg-pink-100 py-2 px-5 rounded-full inline-block animate-pulse";
+        micBtn.style.display = 'none';
+        meterContainer.classList.remove('hidden');
 
-    const analyser = audioContext.createAnalyser();
-    const microphone = audioContext.createMediaStreamSource(stream);
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
 
-    analyser.fftSize = 256;
-    analyser.smoothingTimeConstant = 0.2; // Quick response to air pressure
+        function detectBlow() {
+          if (isBlown) return;
 
-    microphone.connect(analyser);
+          analyser.getByteFrequencyData(dataArray);
 
-    const bufferLength = analyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
+          // Calculate Signal Power
+          let sum = 0;
+          for (let i = 0; i < bufferLength; i++) {
+            sum += dataArray[i] * dataArray[i];
+          }
+          let rms = Math.sqrt(sum / bufferLength);
 
-    function checkBlow() {
-      if (isBlown) return;
+          // Update Sound Visualizer Progress Bar
+          let percentage = Math.min(100, Math.max(0, (rms / 60) * 100));
+          volumeMeter.style.width = percentage + "%";
 
-      analyser.getByteFrequencyData(dataArray);
+          // Sensitivity Trigger (Blow Threshold > 25)
+          if (rms > 25) {
+            blowOutCandle();
+            return;
+          }
 
-      let sum = 0;
-      let lowBins = Math.floor(bufferLength * 0.4); // Focus on low-pitch wind sound
-      for (let i = 0; i < lowBins; i++) {
-        sum += dataArray[i];
+          requestAnimationFrame(detectBlow);
+        }
+
+        detectBlow();
+
+      } catch (err) {
+        console.error(err);
+        alert("Microphone permission blocked! Address bar-er 🔒 icon-e click kore permission Allow korun athoba Cake-e click kore candle off korun.");
       }
-      let average = sum / lowBins;
-
-      // Sensitivity Level
-      if (average > 25) {
-        blowOutCandle();
-        stream.getTracks().forEach(track => track.stop()); // Stop mic recording after blowing
-        return;
-      }
-
-      requestAnimationFrame(checkBlow);
     }
 
-    checkBlow();
-
-  } catch (err) {
-    console.error("Mic Permission Error: ", err);
-    
-    if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
-      alert("Microphone permission block kora ache! Browser-er Address bar-er (🔒) icon-e click kore Microphone 'Allow' kore page-ta Reload din.");
-    } else {
-      alert("Microphone access kora jacche na. Apni Cake-er upor click koreo candle off korte parben!");
-    }
-  }
-}
-
+    // Floating Hearts Animation
     function createHearts() {
       const container = document.getElementById('hearts-container');
       const heartSymbols = ['❤️', '💖', '✨', '💕', '🌸'];
