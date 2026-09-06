@@ -283,67 +283,82 @@
 
     /* Fixed Microphone & Blowing Detection Engine */
     async function initMicrophone() {
-      // 1. Browser Security Check for HTTPS / Localhost
-      if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
-        alert("⚠️ Microphone access requires HTTPS connection or Localhost!\nIf hosted on standard HTTP, browsers block the mic. You can tap/click on the cake instead.");
-      }
+  const statusTxt = document.getElementById('cake-status');
+  const micBtn = document.getElementById('mic-btn');
 
-      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        alert("Microphone is not supported on this browser/environment. Tap on the cake to blow the candle!");
+  // Check if browser supports Media Devices
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    alert("Apnar browser-e microphone support korche na! Cake-e click kore candle blow koro.");
+    return;
+  }
+
+  try {
+    // Request permission explicitly on user click
+    const stream = await navigator.mediaDevices.getUserMedia({ 
+      audio: {
+        echoCancellation: true,
+        noiseSuppression: false, // Noise suppression off rakhle phūr haowa shohoje detect hoy
+        autoGainControl: true
+      }, 
+      video: false 
+    });
+
+    statusTxt.innerText = "Microphone Active! Ekhon mic-er shamne phū dao 🌬️";
+    micBtn.style.display = 'none';
+
+    // Handle Audio Context for iOS & Chrome Security
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioContext = new AudioContext();
+
+    if (audioContext.state === 'suspended') {
+      await audioContext.resume();
+    }
+
+    const analyser = audioContext.createAnalyser();
+    const microphone = audioContext.createMediaStreamSource(stream);
+
+    analyser.fftSize = 256;
+    analyser.smoothingTimeConstant = 0.2; // Quick response to air pressure
+
+    microphone.connect(analyser);
+
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    function checkBlow() {
+      if (isBlown) return;
+
+      analyser.getByteFrequencyData(dataArray);
+
+      let sum = 0;
+      let lowBins = Math.floor(bufferLength * 0.4); // Focus on low-pitch wind sound
+      for (let i = 0; i < lowBins; i++) {
+        sum += dataArray[i];
+      }
+      let average = sum / lowBins;
+
+      // Sensitivity Level
+      if (average > 25) {
+        blowOutCandle();
+        stream.getTracks().forEach(track => track.stop()); // Stop mic recording after blowing
         return;
       }
 
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        
-        document.getElementById('cake-status').innerText = "Mic Ready! Blow strongly near your phone/PC mic 🌬️";
-        document.getElementById('mic-btn').innerText = "Microphone Active 🎙️";
-
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        const audioContext = new AudioContext();
-        
-        if (audioContext.state === 'suspended') {
-          await audioContext.resume();
-        }
-
-        const analyser = audioContext.createAnalyser();
-        const microphone = audioContext.createMediaStreamSource(stream);
-        
-        analyser.fftSize = 512;
-        microphone.connect(analyser);
-
-        const dataArray = new Uint8Array(analyser.frequencyBinCount);
-
-        function detectBlow() {
-          if (isBlown) return;
-
-          analyser.getByteFrequencyData(dataArray);
-
-          // Calculate average sound intensity
-          let sum = 0;
-          for (let i = 0; i < dataArray.length; i++) {
-            sum += dataArray[i];
-          }
-          let average = sum / dataArray.length;
-
-          // Sensitive detection threshold for blowing air
-          if (average > 25) {
-            blowOutCandle();
-            stream.getTracks().forEach(track => track.stop());
-            audioContext.close();
-            return;
-          }
-
-          requestAnimationFrame(detectBlow);
-        }
-
-        detectBlow();
-
-      } catch (err) {
-        console.error("Mic Access Error:", err);
-        alert("Microphone permission denied or blocked by browser settings! You can click on the cake directly to blow it out.");
-      }
+      requestAnimationFrame(checkBlow);
     }
+
+    checkBlow();
+
+  } catch (err) {
+    console.error("Mic Permission Error: ", err);
+    
+    if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+      alert("Microphone permission block kora ache! Browser-er Address bar-er (🔒) icon-e click kore Microphone 'Allow' kore page-ta Reload din.");
+    } else {
+      alert("Microphone access kora jacche na. Apni Cake-er upor click koreo candle off korte parben!");
+    }
+  }
+}
 
     function createHearts() {
       const container = document.getElementById('hearts-container');
